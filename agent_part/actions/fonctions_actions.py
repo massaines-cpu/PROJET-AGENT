@@ -1,5 +1,9 @@
 import os
 
+#print hello
+
+def hello():
+    print("hello")
 #créer un fichier
 
 def creer_un_fichier(nom):
@@ -17,9 +21,6 @@ def creer_un_dossier(nom):
 #renommer fichier
 def renommer_fichier(ancien_nom, nouveau_nom ):
     os.rename(ancien_nom, nouveau_nom)
-
-def hello():
-    print("hello")
 
 #lire le contenu fichier
 
