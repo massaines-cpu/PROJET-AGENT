@@ -11,9 +11,10 @@ class Query(BaseModel):
     reponse: str
 
 @app.post('/vers_LLM', description=SWAGGER)
-def vers_LLM(nl: ):
+def vers_LLM(request: Query ):
+
     pass
 
 @app.post('/vers_agent')
-def vers_agent(reponse_llm:):
+def vers_agent(request: Query):
     pass
