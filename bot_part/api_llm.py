@@ -1,18 +1,23 @@
 #api_lmm
+#endpoint doit recevoir une demande str et retourner la réponse du LLM.
+
 from fastapi import FastAPI
 from openai import OpenAI
 from pydantic import BaseModel
+from dotenv import load_dotenv
+
 import os
 
-app = FastAPI()
-
+app = FastAPI(title='API LLM')
+load_dotenv()
 gpt = OpenAI(api_key = os.getenv('API_KEY_AZURE'),base_url= os.getenv('URL_AZURE'))
-
+print(os.getenv('API_KEY_AZURE'))
+print(os.getenv('URL_AZURE'))
 class Demande(BaseModel):
     demande_pour_repondre: str
 
-#endpoint doit recevoir une demande str et retourner la réponse du LLM.
-with open('./agent_part/swagger.json', 'r') as f:
+direction = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(direction, '../agent_part/swagger.json'), 'r') as f:
     contenu = f.read()
 
 @app.post('/demande')

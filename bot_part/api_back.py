@@ -1,20 +1,24 @@
-#convertit NL en instructions json
 #api_back
+#convertit NL en instructions json
+# recevoir la demande
+# l'envoyer à api_llm
+# récupérer le JSON retourné
+# l'envoyer à api_agent
+
 from fastapi import FastAPI
-from openai import BaseModel
+from pydantic import BaseModel
+import requests
 
 app = FastAPI(title='API BACK')
 
 SWAGGER = './agent_part/swagger.json'
 class Query(BaseModel):
     demande: str
-    reponse: str
 
-@app.post('/vers_LLM', description=SWAGGER)
-def vers_LLM(request: Query ):
+@app.post('/transfert')
+def recup_et_transfert(request: Query ):
+    reponse_llm = requests.post('http://localhost:8001/demande', json={"demande_pour_repondre": request.demande})
+    json_actions = reponse_llm.json()
+    reponse_agent = requests.post('http://localhost:8002/execution', json=json_actions)
+    return reponse_agent.json()
 
-    pass
-
-@app.post('/vers_agent')
-def vers_agent(request: Query):
-    pass
