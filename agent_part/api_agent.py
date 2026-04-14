@@ -2,9 +2,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from agent import excecute_actions
+from actions.fonctions_actions import LIST_OF_ACTIONS
+
 #recoit qqch en json et le transmet a agent
 
-app = FastAPI()
+app = FastAPI(title="API AGENT")
 
 class Actions(BaseModel):
     action: str
@@ -13,9 +15,13 @@ class Actions(BaseModel):
 class Liste(BaseModel):
     liste_des_actions: list[Actions]
 
+liste_de_description = []
+for k, v in LIST_OF_ACTIONS.items():
+    liste_de_description.append(k + " : " + v.__doc__)
+description_finale = '\n\n'.join(liste_de_description)
 
-@app.post("/execution")
-def jsp(reception: Liste):
+@app.post("/execution", description=description_finale)
+def execution_agent(reception: Liste):
     conversion_actions_en_dictionnaire = [a.model_dump() for a in reception.liste_des_actions]
     excecute_actions(conversion_actions_en_dictionnaire)
 

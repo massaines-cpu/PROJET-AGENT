@@ -1,0 +1,143 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API AGENT",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/execution": {
+      "post": {
+        "summary": "Execution Agent",
+        "description": "creer_un_fichier : cette fonction sert à créer un fichier dans le projet\n\nhello : cette fonction sert à print 'hello' un fichier dans le termninal\n\ncreer_un_dossier : cette fonction sert à créer un dossier dans le projet\n\nlire_contenu_fichier : cette fonction sert à lire le contenu d'un fichier dans le projet\n\nrenommer_fichier : cette fonction sert à créer à renommer un fichier dans le projet",
+        "operationId": "execution_agent_execution_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Liste"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Actions": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "parametres": {
+            "items": {},
+            "type": "array",
+            "title": "Parametres"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action",
+          "parametres"
+        ],
+        "title": "Actions"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Liste": {
+        "properties": {
+          "liste_des_actions": {
+            "items": {
+              "$ref": "#/components/schemas/Actions"
+            },
+            "type": "array",
+            "title": "Liste Des Actions"
+          },
+          "description_finale": {
+            "type": "string",
+            "title": "Description Finale"
+          }
+        },
+        "type": "object",
+        "required": [
+          "liste_des_actions",
+          "description_finale"
+        ],
+        "title": "Liste"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

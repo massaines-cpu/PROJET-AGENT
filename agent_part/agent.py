@@ -1,4 +1,4 @@
-from actions.liste_des_actions import LIST_OF_ACTIONS
+from actions.fonctions_actions import LIST_OF_ACTIONS
 
 
 def excecute_actions(actions_list: list[dict]):
