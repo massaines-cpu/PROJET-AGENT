@@ -17,8 +17,10 @@ class Liste(BaseModel):
 
 liste_de_description = []
 for k, v in LIST_OF_ACTIONS.items():
-    liste_de_description.append(k + " : " + v.__doc__)
-description_finale = '\n\n'.join(liste_de_description)
+    description = k + ': ' + v.__doc__
+    liste_de_description.append(description)
+
+description_finale = '\n'.join(liste_de_description)
 
 @app.post("/execution", description=description_finale)
 def execution_agent(reception: Liste):
