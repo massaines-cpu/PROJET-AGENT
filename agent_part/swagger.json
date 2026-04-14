@@ -8,7 +8,7 @@
     "/execution": {
       "post": {
         "summary": "Execution Agent",
-        "description": "creer_un_fichier: cette fonction sert à créer un fichier dans le projet\nhello: cette fonction sert à print 'hello' un fichier dans le termninal\ncreer_un_dossier: cette fonction sert à créer un dossier dans le projet\nlire_contenu_fichier: cette fonction sert à lire le contenu d'un fichier dans le projet\nrenommer_fichier: cette fonction sert à créer à renommer un fichier dans le projet",
+        "description": "creer_un_fichier: cette fonction sert à créer un fichier dans le projet\nhello: cette fonction sert à print 'hello' un fichier dans le termninal\ncreer_un_dossier: cette fonction sert à créer un dossier dans le projet\nlire_contenu_fichier: cette fonction sert à lire le contenu d'un fichier dans le projet\nrenommer_fichier: cette fonction sert à créer à renommer un fichier dans le projet\nsupprimer_fichier: cette fonction sert à supprimer un fichier dans le projet\nsupprimer_dossier: cette fonction sert à supprimer un dossier dans le projet",
         "operationId": "execution_agent_execution_post",
         "requestBody": {
           "content": {

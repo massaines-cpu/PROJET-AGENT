@@ -11,8 +11,7 @@ import os
 app = FastAPI(title='API LLM')
 load_dotenv()
 gpt = OpenAI(api_key = os.getenv('API_KEY_AZURE'),base_url= os.getenv('URL_AZURE'))
-print(os.getenv('API_KEY_AZURE'))
-print(os.getenv('URL_AZURE'))
+
 class Demande(BaseModel):
     demande_pour_repondre: str
 
@@ -24,7 +23,7 @@ with open(os.path.join(direction, '../agent_part/swagger.json'), 'r') as f:
 def demande_llm(request: Demande):
     demande = request.demande_pour_repondre
     reponse = gpt.chat.completions.create(
-        model='gpt-5.1-chat',
+        model='gpt-5.4-nano',
         messages=[
             {'role': 'system', 'content': f'''Tu es un agent. À partir de la demande utilisateur, 
             réponds UNIQUEMENT en JSON avec ce format :

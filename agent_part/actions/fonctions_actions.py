@@ -28,8 +28,17 @@ def renommer_fichier(ancien_nom, nouveau_nom ):
     ''' cette fonction sert à créer à renommer un fichier dans le projet'''
     os.rename(ancien_nom, nouveau_nom)
 
-#lire le contenu fichier
+#supprimer fichier
+def supprimer_fichier(nom):
+    ''' cette fonction sert à supprimer un fichier dans le projet'''
+    os.remove(nom)
 
+#supprimer un dossier
+def supprimer_dossier(nom):
+    ''' cette fonction sert à supprimer un dossier dans le projet'''
+    os.rmdir(nom)
+
+#lire le contenu fichier
 def lire_contenu_fichier(nom):
     ''' cette fonction sert à lire le contenu d'un fichier dans le projet'''
     with open(nom, 'r') as f:
@@ -43,7 +52,9 @@ LIST_OF_ACTIONS = {
     "hello": hello,
     'creer_un_dossier': creer_un_dossier,
     'lire_contenu_fichier': lire_contenu_fichier,
-    'renommer_fichier': renommer_fichier
+    'renommer_fichier': renommer_fichier,
+    'supprimer_fichier': supprimer_fichier,
+    'supprimer_dossier': supprimer_dossier,
 }
 
 liste_de_description = []
