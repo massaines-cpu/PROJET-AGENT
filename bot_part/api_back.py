@@ -16,10 +16,10 @@ class Query(BaseModel):
     demande: str
 
 @app.post('/transfert')
-def recup_et_transfert(request: Query ):
+def recup_et_transfert(request: Query):
     reponse_llm = requests.post('http://localhost:8001/demande', json={"demande_pour_repondre": request.demande})
     actions_en_json = json.loads(reponse_llm.json())
 
-    reponse_agent = requests.post('http://localhost:8002/execution', json=actions_en_json)
+    reponse_agent = requests.post('http://localhost:8000/execution', json=actions_en_json)
     return reponse_agent.json()
 

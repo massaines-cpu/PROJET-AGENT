@@ -8,11 +8,11 @@ def hello():
     print("hello")
 #créer un fichier
 
-def creer_un_fichier(nom):
-    ''' cette fonction sert à créer un fichier dans le projet'''
-
-    with open(nom, 'w+'):
-        pass
+def creer_un_fichier(nom, contenu=None):
+    ''' cette fonction sert à créer un fichier dans le projet et à écrire dedans si demandé'''
+    with open(nom, 'w+') as f:
+        if contenu:
+            f.write(contenu)
 #creer un dossier
 
 def creer_un_dossier(nom):
@@ -45,6 +45,12 @@ def lire_contenu_fichier(nom):
         contenu = f.read()
         print(contenu)
 
+# def ecrire_contenu_fichier(nom, texte):
+#     ''' cette fonction sert à écrire ou lister du contenu dans un fichier du projet'''
+#     with open(nom, 'w') as f:
+#         f.write(texte + '\n')
+
+
 
 
 LIST_OF_ACTIONS = {
@@ -54,7 +60,7 @@ LIST_OF_ACTIONS = {
     'lire_contenu_fichier': lire_contenu_fichier,
     'renommer_fichier': renommer_fichier,
     'supprimer_fichier': supprimer_fichier,
-    'supprimer_dossier': supprimer_dossier,
+    'supprimer_dossier': supprimer_dossier
 }
 
 liste_de_description = []

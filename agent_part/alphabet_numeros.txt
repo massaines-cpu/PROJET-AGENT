@@ -1,0 +1,1 @@
+Contenu: alphabet avec le numéro des lettres (ex: 1=A, 2=B, ...).
